@@ -14,6 +14,7 @@ function hideAll(){
 
 	$('#staff-list').hide();
 	$('#home').hide();
+	$('#add-products').hide();
 
 }
 
@@ -27,6 +28,7 @@ function showStaff(){
 function showHome(){
 
 	hideAll();
+	getProducts();
 	$('#home').show();
 
 }
@@ -215,6 +217,36 @@ function get_products(){
 
 		error: function(results){
 			console.log(results);
+		},
+
+	});
+
+}
+
+function add_products(){
+
+	hideAll();
+	$('#add-products').show();
+
+	var description = $('#description').val();
+	var price = $('#price').val();
+	var qty_onhand = $('#qtyonhand').val();
+	var stocklimit = $('#stocklimit').val();
+	var sale_dis = $('#sale_dis').val();
+
+	var data = JSON.stringify({'description':description, 'price':price, 'qtyonhand':qty_onhand, 'stocklimit':stocklimit, 'sale_dis':sale_dis});
+
+	$.ajax({
+
+		type:"POST",
+		url:"http://localhost:8000/products",
+		contentType: "application/json; charset=utf-8",
+		data:data,
+		dataType:"json",
+
+		success: function(results){
+			$("#add-products-success").html('');
+			$("#add-products-success").append('<div class = "alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Success!</strong>successfully add product!</div>');
 		},
 
 	});

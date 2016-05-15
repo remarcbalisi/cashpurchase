@@ -1,8 +1,9 @@
 #!flask/bin/python
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from model import DBconn
 import flask
 import sys
+import json
 
 app = Flask(__name__)
 
@@ -78,6 +79,21 @@ def get_products():
         lists.append({'id':str(l[0]), 'description':str(l[1]), 'price':str( round(l[2], 2) ), 'discount':str(l[5])})
 
     return jsonify({'count':len(lists), 'lists': lists})
+
+@app.route('/products', methods=['POST'])
+def add_products():
+
+    data = json.loads(request.data)
+
+    description = data['description']
+    price = data['price']
+    qtyonhand = data['qtyonhand']
+    stocklimit = data['stocklimit']
+    sale_dis = data['sale_dis']
+
+    save_product = spcall('add_products', (description, price, qtyonhand, stocklimit, sale_dis), True)
+
+    return jsonify({'status':'OK', 'message':'successfully added'})
 
 @app.route('/purchase/<int:orno>/<int:prodno>/<int:cust_id>/<int:qty>', methods=['POST'])
 def purchase(orno, prodno, cust_id, qty):
