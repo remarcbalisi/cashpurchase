@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cash Purchase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <style type="text/css">
+      .avatar{
+        max-width: 250px;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">CashPurchase</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li><a href="#" onclick="showHome();">Home</a></li>
+                <li><a href="#" onclick="showStaff();">Staff List</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="staff-list" class="container" style="display:none">
+    <h3>STAFF LIST</h3>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Staff id</th>
+            <th>Staff name</th>
+            <th>Address</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>john@example.com</td>
+            <td>john@example.com</td>
+          </tr>
+          <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+            <td>john@example.com</td>
+          </tr>
+          <tr>
+            <td>July</td>
+            <td>Dooley</td>
+            <td>july@example.com</td>
+            <td>john@example.com</td>
+          </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+
+
+    <div id="home" class="container" style="display:none">
+        <h3>Products</h3>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Product id</th>
+                <th>description</th>
+                <th>price</th>
+                <th>discount</th>
+              </tr>
+            </thead>
+            <tbody id="product-table">
+            </tbody>
+        </table>
+        <br>
+        <br>
+
+        <div id="transaction-success"></div>
+
+        <div id="transaction-form" class="col-md-6">
+            <h3>Add Transaction</h3>
+            <form class="form-inline" role="form" onsubmit="return false">
+              <div class="form-group">
+                <label for="customer_id">Customer:</label>
+                <select class="form-control" id="customer_id">
+
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="staff_id">Staff:</label>
+                <select class="form-control" id="staff_id">
+
+                </select>
+              </div>
+              <button onclick="addTransaction();" class="btn btn-default">Add Transaction</button>
+            </form>
+        </div>
+
+        <div id="transaction-info"></div>
+
+        <div id="item-purchased" class="col-md-6" style="display:none">
+          <div id="purchase-success"></div>
+            <h1>Purchase Item(s)</h1>
+            <form id="item-purchased-form" role="form" method="post" onsubmit="return false">
+              <div class="form-group">
+                  <label>Choose Product</label>
+                  <select id="product-id"></select><br>
+                  <label>Quantity</label>
+                  <input id="quantity" type="number" value="1"></input>
+              </div>
+              <button name="buy-now" onclick="purchase();" class="btn btn-primary">Buy Now!</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename="jquery-1.11.0.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="main.js") }}"></script>
+    <script src="{{ url_for('static', filename="bootstrap.min.js") }}"></script>
+  </body>
+</html>
