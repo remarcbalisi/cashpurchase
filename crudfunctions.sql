@@ -99,7 +99,7 @@ create or replace function get_staffs(out int, out varchar, out varchar, out var
 	$$
 		language 'sql';
 
-create or replace function get_products(out int, out text, out int, out int, out int, out int) returns setof record as
+create or replace function get_products(out int, out text, out float, out int, out int, out int) returns setof record as
 	$$
 		select prodno, description, price, qtyonhand, stocklimit, sale_dis from product;
 	$$
