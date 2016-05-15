@@ -13,7 +13,7 @@ create table staff(
 create table product(
 	prodno serial not null primary key,
 	description TEXT,
-	price INT,
+	price FLOAT,
 	qtyonhand INT,
 	stocklimit INT,
 	sale_dis INT);
