@@ -99,8 +99,18 @@ create or replace function get_staffs(out int, out varchar, out varchar, out var
 	$$
 		language 'sql';
 
-create or replace function get_products(out int, out text, out int, out int, out int, out int) returns setof record as
+create or replace function get_products(out int, out text, out float, out int, out int, out int) returns setof record as
 	$$
 		select prodno, description, price, qtyonhand, stocklimit, sale_dis from product;
 	$$
 		language 'sql';
+
+create or replace function add_products(par_description text, par_price float, par_qtyonhand int, par_stocklimit int, par_sale_dis int) returns text as
+	$$ declare local_response text;
+		begin
+			insert into product (description, price, qtyonhand, stocklimit, sale_dis) values (par_description, par_price, par_qtyonhand, par_stocklimit, par_sale_dis);
+				local_response = 'OK';
+			return local_response;
+		end;
+	$$
+		language 'plpgsql';
