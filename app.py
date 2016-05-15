@@ -63,7 +63,7 @@ def get_transaction(orno):
     lists = []
 
     for l in transaction:
-        lists.append({'orno':str(l[0]), 'date':str(l[1]), 'amountdue':str(l[2]), 'custno':str(l[3]), 'staffid':str(l[4]), 'amountpaid':str(l[5]), 'discount':str(l[6])});
+        lists.append({'orno':str(l[0]), 'date':str(l[1]), 'amountdue':str(l[2]), 'custno':str(l[3]), 'staffid':str(l[4]), 'amountpaid':str(round (l[5],2)), 'discount':str(l[6])});
 
     return jsonify({'count': len(lists), 'lists':lists})
 
@@ -75,7 +75,7 @@ def get_products():
     lists = []
 
     for l in products:
-        lists.append({'id':str(l[0]), 'description':str(l[1]), 'price':str(l[2]), 'discount':str(l[5])})
+        lists.append({'id':str(l[0]), 'description':str(l[1]), 'price':str( round(l[2], 2) ), 'discount':str(l[5])})
 
     return jsonify({'count':len(lists), 'lists': lists})
 
